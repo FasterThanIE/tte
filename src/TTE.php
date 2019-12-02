@@ -27,12 +27,12 @@ class TTE extends TTE_Core
 
 
     /**
-     * @param $templateName
+     * @param string $templateName
      * @param array $params
      * @return $this
      * @throws Exception
      */
-    public function render($templateName, $params = [])
+    public function render(string $templateName, array $params = [])
     {
         $file = file_get_contents($templateName);
         preg_match_all('/{(\w+)}/', $file, $matchedData);
@@ -63,7 +63,7 @@ class TTE extends TTE_Core
      * @param int $type
      * @return $this
      */
-    public function useSessionData($type = self::TEMPLATE_SESSION_FULL)
+    public function useSessionData(int $type = self::TEMPLATE_SESSION_FULL)
     {
         $this->sessionType = $type;
         return $this;

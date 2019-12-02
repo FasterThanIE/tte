@@ -4,10 +4,10 @@ class TTE_Core
 {
 
     /**
-     * @param $variableName
+     * @param string $variableName
      * @throws Exception
      */
-    public static function undefinedVariableException($variableName)
+    public static function undefinedVariableException(string $variableName)
     {
         $variableName = str_replace(['{', '}', '@'], '', $variableName);
         throw new Exception("Undefined variable name ".$variableName);
