@@ -1,7 +1,8 @@
 <?php
 
+require_once "TTE_Core.php";
 
-class TTE
+class TTE extends TTE_Core
 {
 
     /**
@@ -48,7 +49,7 @@ class TTE
             }
             else
             {
-                $missingData[] = $value;
+                parent::undefinedVariableException($value);
             }
 
         }
