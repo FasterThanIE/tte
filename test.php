@@ -1,4 +1,4 @@
-Hello {@world}
-Cao {@ime}
+Hello {world}
+Cao {ime}
 
-Test {@nesto}
+Test {nesto}
