@@ -30,6 +30,7 @@ class TTE extends TTE_Core
      * @param $templateName
      * @param array $params
      * @return $this
+     * @throws Exception
      */
     public function render($templateName, $params = [])
     {
