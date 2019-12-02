@@ -19,12 +19,6 @@ class TTE
      */
     const TEMPLATE_SESSION_PARTIAL = 2;
 
-
-    /**
-     * @var array
-     */
-    private $vars = [];
-
     /**
      * @var int
      */
