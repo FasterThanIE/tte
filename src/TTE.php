@@ -35,7 +35,7 @@ class TTE extends TTE_Core
     public function render($templateName, $params = [])
     {
         $file = file_get_contents($templateName);
-        preg_match_all('/{\(\w+)}/', $file, $matchedData);
+        preg_match_all('/{(\w+)}/', $file, $matchedData);
 
         $varsFound = [];
         $replacedWith = [];
