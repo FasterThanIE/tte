@@ -1,2 +1,4 @@
-Hello {$world}
-Cao {$ime}
+Hello {@world}
+Cao {@ime}
+
+Test {@nesto}

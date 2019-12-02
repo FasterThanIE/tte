@@ -6,5 +6,5 @@
 
     $tte->render("test.php", [
         'world' => 'test',
-        'ime' => 'Jeca'
-    ]);
+        'ime' => 'Jeca',
+    ])->useSessionData();
