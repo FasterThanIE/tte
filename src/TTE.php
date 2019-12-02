@@ -37,11 +37,20 @@ class TTE
 
         $varsFound = [];
         $replacedWith = [];
+        $missingData = [];
 
         foreach ($matchedData[0] as $index => $value)
         {
-            $varsFound[] = $value;
-            $replacedWith[] = $params[$matchedData[1][$index]];
+            if(isset($params[$matchedData[1][$index]]))
+            {
+                $varsFound[] = $value;
+                $replacedWith[] = $params[$matchedData[1][$index]];
+            }
+            else
+            {
+                $missingData[] = $value;
+            }
+
         }
 
         echo str_replace($varsFound, $replacedWith, $file);
