@@ -4,7 +4,7 @@
 
     $tte = new TTE();
 
-    $tte->render("xasxasxas.php", [
+    $tte->render("test.php", [
         'world' => 'test',
         'ime' => 'Jeca',
         'nesto' => 'Test 2',

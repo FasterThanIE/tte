@@ -16,12 +16,11 @@ class TTE_Core
     /**
      * @param $variables
      * @param $template
-     * @throws Exception
      */
     protected static function unusedParametersException($variables, $template)
     {
         foreach ($variables as $variable)
-            throw new Exception("Variable $variable passed but not used in template $template.");
+            trigger_error("Variable $variable passed but not used in template $template.",E_USER_WARNING);
     }
 
     protected function templateNotFoundException($templateName)
