@@ -63,7 +63,7 @@ class TTE extends TTE_Core
         }
         catch (Exception $e)
         {
-            parent::templateNotFoundException($templateName);
+            $this->templateNotFoundException($templateName);
         }
 
 
@@ -83,14 +83,14 @@ class TTE extends TTE_Core
             }
             else
             {
-                parent::undefinedVariableException($value);
+                $this->undefinedVariableException($value);
             }
 
         }
 
         if($this->env == self::ENV_DEV)
         {
-            parent::unusedParametersException($this->unusedParams, $templateName);
+            $this->unusedParametersException($this->unusedParams, $templateName);
         }
 
         echo str_replace($varsFound, $replacedWith, $file);
