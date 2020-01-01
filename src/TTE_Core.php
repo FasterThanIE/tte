@@ -23,6 +23,10 @@ class TTE_Core
             trigger_error("Variable $variable passed but not used in template $template.",E_USER_WARNING);
     }
 
+    /**
+     * @param $templateName
+     * @throws Exception
+     */
     protected function templateNotFoundException($templateName)
     {
         throw new Exception("Attempted to load template that doesnt exist. Template name: $templateName");
