@@ -4,8 +4,9 @@
 
     $tte = new TTE();
 
-    $tte->render("test.php", [
+    $tte->render("xasxasxas.php", [
         'world' => 'test',
         'ime' => 'Jeca',
-        'nesto' => 'Test 2'
+        'nesto' => 'Test 2',
+        'axsx' => 'Tx'
     ])->useSessionData();

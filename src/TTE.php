@@ -6,6 +6,16 @@ class TTE extends TTE_Core
 {
 
     /**
+     * Environment for development. Used for debugging
+     */
+    const ENV_DEV = 0;
+
+    /**
+     * Environment for production
+     */
+    const ENV_PROD = 1;
+
+    /**
      * Do not use session data, this is default value
      */
     const TEMPLATE_SESSION_NONE = 0;
@@ -25,6 +35,13 @@ class TTE extends TTE_Core
      */
     private $sessionType = self::TEMPLATE_SESSION_FULL;
 
+    /**
+     * @var array
+     */
+    private $unusedParams = [];
+
+    private $env = self::ENV_DEV;
+
 
     /**
      * @param string $templateName
@@ -34,12 +51,28 @@ class TTE extends TTE_Core
      */
     public function render(string $templateName, array $params = [])
     {
-        $file = file_get_contents($templateName);
+
+        set_error_handler(function ($err_severity, $err_msg, $err_file, $err_line, array $err_context)
+        {
+            throw new ErrorException( $err_msg, 0, $err_severity, $err_file, $err_line );
+        }, E_WARNING);
+
+        try
+        {
+            $file = file_get_contents($templateName);
+        }
+        catch (Exception $e)
+        {
+            parent::templateNotFoundException($templateName);
+        }
+
+
         preg_match_all('/{(\w+)}/', $file, $matchedData);
 
         $varsFound = [];
         $replacedWith = [];
-        $missingData = [];
+
+        $this->unusedParams = array_diff(array_keys($params), array_values($matchedData[1]));
 
         foreach ($matchedData[0] as $index => $value)
         {
@@ -53,6 +86,11 @@ class TTE extends TTE_Core
                 parent::undefinedVariableException($value);
             }
 
+        }
+
+        if($this->env == self::ENV_DEV)
+        {
+            parent::unusedParametersException($this->unusedParams, $templateName);
         }
 
         echo str_replace($varsFound, $replacedWith, $file);
